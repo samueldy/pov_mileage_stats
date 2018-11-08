@@ -10,34 +10,12 @@ Handles the primary functions
 
 import sys
 import argparse
+import validateInputfile
 
 
 def warning(*objs):
     """Writes a message to stderr."""
     print("WARNING: ", *objs, file=sys.stderr)
-
-
-def canvas(with_attribution=True):
-    """
-    Placeholder function to show example docstring (NumPy format)
-
-    Replace this function and doc string for your own project
-
-    Parameters
-    ----------
-    with_attribution : bool, Optional, default: True
-        Set whether or not to display who the quote is from
-
-    Returns
-    -------
-    quote : str
-        Compiled string including quote and optional attribution
-    """
-
-    quote = "The code is but a canvas to our imagination."
-    if with_attribution:
-        quote += "\n\t- Adapted from Henry David Thoreau"
-    return quote
 
 
 def parse_cmdline(argv):
@@ -54,6 +32,9 @@ def parse_cmdline(argv):
     #                     default=DEF_IRATE_FILE, type=read_input_rates)
     parser.add_argument("-n", "--no_attribution", help="Whether to include attribution",
                         action='store_false')
+    parser.add_argument("-i", "--input-file", required=True, help="Path to the Excel workbook containing mileage data.", type=str)
+    parser.add_argument("-r", "--data-range", help="R1C1-style range containing the data")
+    
     args = None
     try:
         args = parser.parse_args(argv)
@@ -69,7 +50,22 @@ def main(argv=None):
     args, ret = parse_cmdline(argv)
     if ret != 0:
         return ret
-    print(canvas(args.no_attribution))
+    
+    # Validate the file
+    validateInputfile.validateInputFile(args.input_file)
+
+    # Load data
+
+    # Perform calculations
+
+    # Make Plots
+
+    # Export results to Python objects and SVG images
+
+    # Render Jinja templates
+
+    # Open results in browser
+
     return 0  # success
 
 
