@@ -8,9 +8,16 @@ A small command-line tool to calculate mileage statistics for a personally-owned
 Handles the primary functions
 """
 
+import os
 import sys
 import argparse
-import validateInputfile
+
+import validate_input_file
+import load_data
+import calculate_statistics
+import make_plots
+import results_export
+import html_template_render
 
 
 def warning(*objs):
