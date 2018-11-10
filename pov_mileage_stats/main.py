@@ -12,7 +12,6 @@ import os
 import sys
 import argparse
 
-import validate_input_file
 import load_data
 import calculate_statistics
 import make_plots
@@ -64,9 +63,6 @@ def main(argv=None):
     if ret != 0:
         return ret
     
-    # Validate the file
-    validate_input_file.validateInputFile(args.input_file)
-
     # Load data
 
     # Perform calculations

@@ -11,7 +11,6 @@ from contextlib import contextmanager
 from io import StringIO
 
 from pov_mileage_stats import main
-import validate_input_file
 import load_data
 import calculate_statistics
 import make_plots
