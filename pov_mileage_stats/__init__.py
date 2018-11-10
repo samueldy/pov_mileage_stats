@@ -8,7 +8,7 @@ A small command-line tool to calculate mileage statistics for a personally-owned
 from __future__ import absolute_import
 
 # Add imports here
-from .pov_mileage_stats import *
+from .main import *
 
 # Handle versioneer
 from ._version import get_versions
