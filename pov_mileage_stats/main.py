@@ -19,6 +19,12 @@ import make_plots
 import results_export
 import html_template_render
 
+# Global return statuses
+SUCCESS = 0
+FAILURE = 1
+
+# Other global variables
+SAMPLE_DATA_PATH = "data/test_data.xlsx"
 
 def warning(*objs):
     """Writes a message to stderr."""
