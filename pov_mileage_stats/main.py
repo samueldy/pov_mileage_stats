@@ -45,7 +45,8 @@ def parse_cmdline(argv):
     parser.add_argument("-n", "--no_attribution", help="Whether to include attribution",
                         action='store_false')
     parser.add_argument("-i", "--input-file", required=True, help="Path to the Excel workbook containing mileage data.", type=str)
-    parser.add_argument("-r", "--data-range", help="R1C1-style range containing the data")
+    parser.add_argument("-s", "--skiprows", help="Number of header rows to skip before reading your table.", required=False, default=0)
+    parser.add_argument("-c", "--usecols", help="A:B-style range of columns to include.", default="A:B",required=False)
     
     args = None
     try:
