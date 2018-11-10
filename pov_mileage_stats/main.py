@@ -11,6 +11,8 @@ Handles the primary functions
 import os
 import sys
 import argparse
+import pandas as pd
+import xlrd
 
 import load_data
 import calculate_statistics
@@ -19,8 +21,9 @@ import results_export
 import html_template_render
 
 # Global return statuses
-SUCCESS = 0
-FAILURE = 1
+class RETVAL():
+    SUCCESS = 0
+    FAILURE = 1
 
 # Other global variables
 SAMPLE_DATA_PATH = "data/test_data.xlsx"
@@ -47,7 +50,7 @@ def parse_cmdline(argv):
     parser.add_argument("-i", "--input-file", required=True, help="Path to the Excel workbook containing mileage data.", type=str)
     parser.add_argument("-s", "--skiprows", help="Number of header rows to skip before reading your table.", required=False, default=0)
     parser.add_argument("-c", "--usecols", help="A:B-style range of columns to include.", default="A:B",required=False)
-    
+
     args = None
     try:
         args = parser.parse_args(argv)
@@ -65,7 +68,16 @@ def main(argv=None):
         return ret
     
     # Load data
-
+    # xlrd date conversion trick: https://stackoverflow.com/a/51708561
+    data = load_data.import_excel_data(
+        args.input_file, 
+        skiprows=args.skiprows, 
+        usecols=args.usecols,
+        sheets=1,
+        converters={
+            'Date':lambda x: xlrd.xldate.xldate_as_datetime(x,0)
+        })
+    
     # Perform calculations
 
     # Make Plots
