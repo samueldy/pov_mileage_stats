@@ -24,25 +24,6 @@ TEST_DATA_DIR = os.path.join(CURRENT_DIR, 'test_data')
 PROJ_DIR = os.path.join(MAIN_DIR, 'arthritis_proj')
 DATA_DIR = os.path.join(PROJ_DIR, 'data')
 
-class TestQuote(unittest.TestCase):
-    def testNoArgs(self):
-        test_input = []
-        main(test_input)
-        with capture_stdout(main, test_input) as output:
-            self.assertTrue("Henry David Thoreau" in output)
-
-    def testNoAttribution(self):
-        test_input = ["-n"]
-        main(test_input)
-        with capture_stdout(main, test_input) as output:
-            self.assertFalse("Henry David Thoreau" in output)
-
-
-# Unit tests: input validation procedures (validate_input_file.py)
-class input_validation_tests(unittest.TestCase):
-    def test_validate_input_file(self):
-        self.assertTrue(validate_input_file.check_file_extension(main.SAMPLE_DATA_PATH), main.SUCCESS)
-
 
 # Utility functions
 
