@@ -11,6 +11,7 @@ Handles the primary functions
 import os
 import sys
 import argparse
+import matplotlib.pyplot as plt
 import pandas as pd
 import xlrd
 
@@ -79,6 +80,7 @@ def main(argv=None):
         })
     
     # Perform calculations
+
 
     # Make Plots
 
