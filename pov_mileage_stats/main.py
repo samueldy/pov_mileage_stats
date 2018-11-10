@@ -59,7 +59,7 @@ def main(argv=None):
         return ret
     
     # Validate the file
-    validateInputfile.validateInputFile(args.input_file)
+    validate_input_file.validateInputFile(args.input_file)
 
     # Load data
 
