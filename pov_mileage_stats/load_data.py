@@ -10,6 +10,8 @@ import os
 import pathlib2 as pathlib
 import pandas as pd
 import main
+import urllib
+import zlib
 
 
 def import_excel_data(path, **kwargs):
@@ -28,14 +30,21 @@ def import_excel_data(path, **kwargs):
         path = os.path.abspath(path)
         fname = pathlib.Path(path).as_uri()
     except IOError as e:
-        main.warning("Cannot locate file. Please ensure you have specified the correct path.",e)
+        main.warning("Cannot locate file. Please ensure you have specified the correct path.", e)
         return main.RETVAL.FAILURE
 
     # Now, pass along the file name to pandas, along with any options the user specified:
     try:
         df = pd.read_excel(fname, **kwargs)
     except ValueError as e:
-        main.warning("Workbook contains invalid data. Please check your column formatting and data range and try again.",e)
+        main.warning(
+            "Workbook contains invalid data. Please check your column formatting and data range and try again.", e)
+        return main.RETVAL.FAILURE
+    except (FileNotFoundError, urllib.error.URLError) as e:
+        main.warning("Cannot locate file. Please ensure that you have specified the correct path.", e)
+        return main.RETVAL.FAILURE
+    except zlib.error as e:
+        main.warning("Excel file appears to be corrupt. Please try using a different file.", e)
         return main.RETVAL.FAILURE
 
     # If the above passes, then we have a valid DataFrame and can return it to the user.
