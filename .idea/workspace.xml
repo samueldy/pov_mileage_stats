@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae4f314d-c96a-4e0a-af08-ed1cf0e41860" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py" beforeDir="false" afterPath="$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pov_mileage_stats/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pov_mileage_stats/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -69,26 +70,26 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3701" />
+          <entry key="py" value="4049" />
           <entry key="txt" value="354" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="129" />
-          <entry key="Python" value="3701" />
+          <entry key="Python" value="4049" />
           <entry key="Scratch" value="225" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="7" />
+          <entry key="py" value="8" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="7" />
+          <entry key="Python" value="8" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -96,11 +97,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pov_mileage_stats/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="87" column="55" lean-forward="true" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+            <state relative-caret-position="74">
+              <caret line="56" column="101" selection-start-line="56" selection-start-column="101" selection-end-line="56" selection-end-column="101" />
               <folding>
                 <element signature="e#199#208#0" expanded="true" />
               </folding>
@@ -141,11 +142,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="864">
+              <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -153,16 +154,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_pov_mileage_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
-              <folding>
-                <element signature="e#151#160#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="112">
+              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Trip A</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Miles</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -178,10 +184,10 @@
         <option value="$PROJECT_DIR$/pov_mileage_stats/validate_input_file.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
         <option value="$PROJECT_DIR$/tests/test_pov_mileage_stats.py" />
-        <option value="$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py" />
         <option value="$PROJECT_DIR$/pov_mileage_stats/load_data.py" />
         <option value="$PROJECT_DIR$/pov_mileage_stats/__init__.py" />
         <option value="$PROJECT_DIR$/pov_mileage_stats/main.py" />
+        <option value="$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py" />
       </list>
     </option>
   </component>
@@ -411,7 +417,7 @@
       <workItem from="1541884937675" duration="5596000" />
       <workItem from="1541898044018" duration="1056000" />
       <workItem from="1541899103499" duration="7611000" />
-      <workItem from="1541907824672" duration="178000" />
+      <workItem from="1541907824672" duration="1146000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed validate_input_file module.">
       <created>1541886959965</created>
@@ -505,20 +511,20 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15002000" />
+    <option name="totallyTimeSpent" value="15970000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1216" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.18710022" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.18710022" />
       <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.25373134" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963988" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32902032" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39926064" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39926064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -560,12 +566,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pov_mileage_stats/main.py</url>
-          <line>84</line>
+          <line>86</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/pov_mileage_stats/main.py</url>
-          <line>103</line>
+          <line>108</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
@@ -622,16 +628,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
-          <folding>
-            <element signature="e#202#240#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -639,19 +635,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py">
+    <entry file="file://$PROJECT_DIR$/tests/test_pov_mileage_stats.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="112">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_pov_mileage_stats.py">
+    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+        <state relative-caret-position="272">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding>
-            <element signature="e#151#160#0" expanded="true" />
+            <element signature="e#202#240#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -668,11 +664,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pov_mileage_stats/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="87" column="55" lean-forward="true" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+        <state relative-caret-position="74">
+          <caret line="56" column="101" selection-start-line="56" selection-start-column="101" selection-end-line="56" selection-end-column="101" />
           <folding>
             <element signature="e#199#208#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="54" column="39" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
         </state>
       </provider>
     </entry>

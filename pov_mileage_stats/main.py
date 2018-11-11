@@ -54,6 +54,9 @@ def parse_cmdline(argv):
                         required=False, default=0)
     parser.add_argument("-c", "--usecols", help="A:B-style range of columns to include.", default="A:B", required=False)
 
+    parser.add_argument("-b", "--basic-statistics", action="store_const", const=True, required=False,
+                        help="Print some basic statistics about the mileage log.")
+
     args = None
     try:
         args = parser.parse_args(argv)
@@ -80,12 +83,14 @@ def main(argv=None):
         converters={
             'Date': lambda x: xlrd.xldate.xldate_as_datetime(x, 0)
         })
-    print(data)
 
     # Perform calculations
     data = load_data.establish_relevant_columns(data)
     basic_stats = calculate_statistics.calculate_basic_stats(data)
-    calculate_statistics.print_basic_stats(basic_stats)
+
+    if args.basic_statistics:
+        calculate_statistics.print_basic_stats(basic_stats)
+
 
     # Make Plots
 

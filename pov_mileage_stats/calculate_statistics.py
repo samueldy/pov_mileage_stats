@@ -27,14 +27,14 @@ def calculate_basic_stats(df):
 
     # Now, we can calculate basic statistics
     basic_stats = {
-        'mean_mileage': {'Name': 'Mean Mileage', 'units': 'miles', 'data': df['Trip A'].mean(axis=0)},
-        'med_mileage': {'Name': 'Median Mileage', 'units': 'miles', 'data': df['Trip A'].median(axis=0)},
+        'mean_mileage': {'Name': 'Mean Mileage', 'units': 'miles', 'data': df['Miles'].mean(axis=0)},
+        'med_mileage': {'Name': 'Median Mileage', 'units': 'miles', 'data': df['Miles'].median(axis=0)},
         'first_day': {'Name': 'First Day of Recorded Mileage', 'units': '',
                       'data': df['Date'].min().strftime("%d %b %Y")},
         'last_day': {'Name': 'Last Day of Recorded Mileage', 'units': '',
                      'data': df['Date'].max().strftime("%d %b %Y")},
-        'record_low': {'Name': 'Record Low Miles Driven', 'units': 'miles', 'data': df['Trip A'].min(axis=0)},
-        'record_high': {'Name': 'Record High Miles Driven', 'units': 'miles', 'data': df['Trip A'].max(axis=0)},
+        'record_low': {'Name': 'Record Low Miles Driven', 'units': 'miles', 'data': df['Miles'].min(axis=0)},
+        'record_high': {'Name': 'Record High Miles Driven', 'units': 'miles', 'data': df['Miles'].max(axis=0)},
     }
 
     return basic_stats
@@ -47,5 +47,10 @@ def print_basic_stats(basic_stats):
         the first day, the last day, the record low mileage, and the record high mileage.
     :return:
     """
-    for _, data in basic_stats:
-        print("{0:s}: {1:.2f} {2:s}".format(data.Name, data.data, data.units))
+    print("""
+    
+    Basic Statistics
+    ================
+    """)
+    for _, data in basic_stats.items():
+        print("{0:s}: {1:s} {2:s}".format(data['Name'], str(data['data']), data['units']))
