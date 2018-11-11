@@ -21,13 +21,16 @@ import make_plots
 import results_export
 import html_template_render
 
+
 # Global return statuses
 class RETVAL():
     SUCCESS = 0
     FAILURE = 1
 
+
 # Other global variables
 SAMPLE_DATA_PATH = "data/test_data.xlsx"
+
 
 def warning(*objs):
     """Writes a message to stderr."""
@@ -48,9 +51,11 @@ def parse_cmdline(argv):
     #                     default=DEF_IRATE_FILE, type=read_input_rates)
     parser.add_argument("-n", "--no_attribution", help="Whether to include attribution",
                         action='store_false')
-    parser.add_argument("-i", "--input-file", required=True, help="Path to the Excel workbook containing mileage data.", type=str)
-    parser.add_argument("-s", "--skiprows", help="Number of header rows to skip before reading your table.", required=False, default=0)
-    parser.add_argument("-c", "--usecols", help="A:B-style range of columns to include.", default="A:B",required=False)
+    parser.add_argument("-i", "--input-file", required=True, help="Path to the Excel workbook containing mileage data.",
+                        type=str)
+    parser.add_argument("-s", "--skiprows", help="Number of header rows to skip before reading your table.",
+                        required=False, default=0)
+    parser.add_argument("-c", "--usecols", help="A:B-style range of columns to include.", default="A:B", required=False)
 
     args = None
     try:
@@ -67,20 +72,19 @@ def main(argv=None):
     args, ret = parse_cmdline(argv)
     if ret != 0:
         return ret
-    
+
     # Load data
     # xlrd date conversion trick: https://stackoverflow.com/a/51708561
     data = load_data.import_excel_data(
-        args.input_file, 
-        skiprows=args.skiprows, 
+        args.input_file,
+        skiprows=args.skiprows,
         usecols=args.usecols,
         sheets=1,
         converters={
-            'Date':lambda x: xlrd.xldate.xldate_as_datetime(x,0)
+            'Date': lambda x: xlrd.xldate.xldate_as_datetime(x, 0)
         })
-    
-    # Perform calculations
 
+    # Perform calculations
 
     # Make Plots
 

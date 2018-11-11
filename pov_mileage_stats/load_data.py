@@ -49,3 +49,22 @@ def import_excel_data(path, **kwargs):
 
     # If the above passes, then we have a valid DataFrame and can return it to the user.
     return df, main.RETVAL.SUCCESS
+
+
+def establish_relevant_columns(df):
+    """
+    Creates a dataframe with columns that are useful for month/year pivoting.
+
+    :param
+    df: A pd.DataFrame object that has exactly two columns: 'Date' containing DateTime values, and 'Miles' containing floats.
+
+    :return
+    A pd.DataFrame instance with 'Date', 'Year', 'Month', 'DayOfWeek', and 'Miles' columns
+    """
+
+    # First, establish year, name-of-month, and name-of-day columns in the dataframe.
+    df['DayOfWeek'] = df['Date'].dt.day_name()
+    df['Month'] = df['Date'].dt.month_name()
+    df['Year'] = df['Date'].dt.year
+
+    return df
