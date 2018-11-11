@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ae4f314d-c96a-4e0a-af08-ed1cf0e41860" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pov_mileage_stats.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pov_mileage_stats.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pov_mileage_stats/load_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/pov_mileage_stats/load_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pov_mileage_stats/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/pov_mileage_stats/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_pov_mileage_stats.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_pov_mileage_stats.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,6 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/pov_mileage_stats$main.coverage" NAME="main Coverage Results" MODIFIED="1541906619248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pov_mileage_stats" />
     <SUITE FILE_PATH="coverage/pov_mileage_stats$Unittests_for_test_pov_mileage_stats_LoadDataTests_test_pass_wrong_file_name.coverage" NAME="Unittests for test_pov_mileage_stats.LoadDataTests.test_pass_wrong_file_name Coverage Results" MODIFIED="1541899293862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pov_mileage_stats$Unittests_for_test_pov_mileage_stats_GeneralCommandLineUse_test_run_with_no_args.coverage" NAME="Unittests for test_pov_mileage_stats.GeneralCommandLineUse.test_run_with_no_args Coverage Results" MODIFIED="1541901107224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/pov_mileage_stats$Unittests_for_test_pov_mileage_stats_LoadDataTests_test_pass_corrupt_file.coverage" NAME="Unittests for test_pov_mileage_stats.LoadDataTests.test_pass_corrupt_file Coverage Results" MODIFIED="1541900450282" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -67,31 +63,32 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
-          <entry key="project.open.time.0" value="2" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2458" />
-          <entry key="txt" value="225" />
+          <entry key="py" value="3701" />
+          <entry key="txt" value="354" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2458" />
+          <entry key="PLAIN_TEXT" value="129" />
+          <entry key="Python" value="3701" />
           <entry key="Scratch" value="225" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="3" />
+          <entry key="py" value="7" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="3" />
+          <entry key="Python" value="7" />
           <entry key="Scratch" value="1" />
         </counts>
       </usages-collector>
@@ -99,13 +96,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pov_mileage_stats/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+            <state relative-caret-position="666">
+              <caret line="87" column="55" lean-forward="true" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
               <folding>
                 <element signature="e#199#208#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pov_mileage_stats/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+              <folding>
+                <element signature="e#202#240#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -115,16 +124,16 @@
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="122" selection-end-column="122" />
+              <caret column="39" selection-start-column="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pov_mileage_stats/load_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="940">
-              <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+            <state relative-caret-position="362">
+              <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
               <folding>
                 <element signature="e#185#194#0" expanded="true" />
               </folding>
@@ -133,13 +142,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test_pov_mileage_stats.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="522">
-              <caret line="76" column="74" lean-forward="true" selection-start-line="76" selection-start-column="74" selection-end-line="76" selection-end-column="74" />
+            <state relative-caret-position="928">
+              <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
               <folding>
                 <element signature="e#151#160#0" expanded="true" />
-                <marker date="1541901002096" expanded="true" signature="970:1446" ph="..." />
               </folding>
             </state>
           </provider>
@@ -159,11 +176,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/pov_mileage_stats/validate_input_file.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
+        <option value="$PROJECT_DIR$/tests/test_pov_mileage_stats.py" />
+        <option value="$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py" />
+        <option value="$PROJECT_DIR$/pov_mileage_stats/load_data.py" />
         <option value="$PROJECT_DIR$/pov_mileage_stats/__init__.py" />
         <option value="$PROJECT_DIR$/pov_mileage_stats/main.py" />
-        <option value="$PROJECT_DIR$/tests/test_pov_mileage_stats.py" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-        <option value="$PROJECT_DIR$/pov_mileage_stats/load_data.py" />
       </list>
     </option>
   </component>
@@ -262,7 +280,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/Continuum/anaconda3/Scripts/conda.exe" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
@@ -279,7 +297,29 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests for test_pov_mileage_stats.GeneralCommandLineUse.test_run_with_no_args">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pov_mileage_stats" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pov_mileage_stats" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pov_mileage_stats/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="Unittests for test_pov_mileage_stats.GeneralCommandLineUse.test_run_with_no_args" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="pov_mileage_stats" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -340,35 +380,20 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for test_pov_mileage_stats.load_data_tests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="pov_mileage_stats" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_pov_mileage_stats.load_data_tests&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.load_data_tests" />
       <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.LoadDataTests" />
       <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.LoadDataTests.test_pass_wrong_file_name" />
       <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.LoadDataTests.test_pass_corrupt_file" />
       <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.GeneralCommandLineUse.test_run_with_no_args" />
+      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.GeneralCommandLineUse.test_run_with_no_args" />
         <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.LoadDataTests" />
         <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.LoadDataTests.test_pass_corrupt_file" />
         <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.LoadDataTests.test_pass_wrong_file_name" />
-        <item itemvalue="Python tests.Unittests for test_pov_mileage_stats.load_data_tests" />
       </list>
     </recent_temporary>
   </component>
@@ -385,7 +410,8 @@
       <workItem from="1541884352057" duration="561000" />
       <workItem from="1541884937675" duration="5596000" />
       <workItem from="1541898044018" duration="1056000" />
-      <workItem from="1541899103499" duration="3581000" />
+      <workItem from="1541899103499" duration="7611000" />
+      <workItem from="1541907824672" duration="178000" />
     </task>
     <task id="LOCAL-00001" summary="Renamed validate_input_file module.">
       <created>1541886959965</created>
@@ -429,7 +455,21 @@
       <option name="project" value="LOCAL" />
       <updated>1541887599965</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added load_data tests covering input file snafus.">
+      <created>1541902820066</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1541902820066</updated>
+    </task>
+    <task id="LOCAL-00008" summary="IntellIJ auto-formatting">
+      <created>1541902883022</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1541902883022</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -465,29 +505,28 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10794000" />
+    <option name="totallyTimeSpent" value="15002000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1216" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.18496802" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49913943" visible="true" weight="0.18710022" />
       <window_info id="Structure" order="1" sideWeight="0.5008606" side_tool="true" weight="0.25373134" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32963988" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32902032" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39926064" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39926064" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32994455" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" weight="0.26408127" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32963988" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32902032" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946696" weight="0.3900185" />
-      <window_info anchor="right" id="Coverage" side_tool="true" visible="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -495,6 +534,7 @@
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="right" id="SciView" order="5" />
       <window_info anchor="right" id="Maven Projects" order="6" />
+      <window_info anchor="right" id="Coverage" order="7" side_tool="true" visible="true" weight="0.32995737" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,8 +549,27 @@
     <MESSAGE value="Removed file validation module; will take care of this in load_data.py" />
     <MESSAGE value="Fixed main module renaming in __init__.py" />
     <MESSAGE value="Removed old tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed old tests." />
+    <MESSAGE value="Added load_data tests covering input file snafus." />
+    <MESSAGE value="IntellIJ auto-formatting" />
+    <MESSAGE value="IntellIJ settings update" />
+    <option name="LAST_COMMIT_MESSAGE" value="IntellIJ settings update" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pov_mileage_stats/main.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pov_mileage_stats/main.py</url>
+          <line>103</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/docs/_templates/README.md">
@@ -530,13 +589,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/pov_mileage_stats/validate_input_file.py" />
-    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/make.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -556,23 +608,26 @@
         <state relative-caret-position="-384" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/main.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/envs/pov_mileage_stats/Lib/argparse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="54" column="33" lean-forward="true" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-          <folding>
-            <element signature="e#199#208#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="224">
+          <caret line="1614" selection-start-line="1614" selection-end-line="1614" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_pov_mileage_stats.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/envs/pov_mileage_stats/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="76" column="74" lean-forward="true" selection-start-line="76" selection-start-column="74" selection-end-line="76" selection-end-column="74" />
+        <state relative-caret-position="440">
+          <caret line="331" selection-start-line="331" selection-end-line="331" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
           <folding>
-            <element signature="e#151#160#0" expanded="true" />
-            <marker date="1541901002096" expanded="true" signature="970:1446" ph="..." />
+            <element signature="e#202#240#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -580,16 +635,43 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="122" selection-end-column="122" />
+          <caret column="39" selection-start-column="39" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/calculate_statistics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_pov_mileage_stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="928">
+          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding>
+            <element signature="e#151#160#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pov_mileage_stats/load_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="940">
-          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+        <state relative-caret-position="362">
+          <caret line="37" column="43" selection-start-line="37" selection-start-column="43" selection-end-line="37" selection-end-column="43" />
           <folding>
             <element signature="e#185#194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pov_mileage_stats/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="87" column="55" lean-forward="true" selection-start-line="87" selection-start-column="55" selection-end-line="87" selection-end-column="55" />
+          <folding>
+            <element signature="e#199#208#0" expanded="true" />
           </folding>
         </state>
       </provider>

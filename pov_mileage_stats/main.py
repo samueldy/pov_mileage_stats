@@ -47,10 +47,7 @@ def parse_cmdline(argv):
 
     # initialize the parser object:
     parser = argparse.ArgumentParser()
-    # parser.add_argument("-i", "--input_rates", help="The location of the input rates file",
-    #                     default=DEF_IRATE_FILE, type=read_input_rates)
-    parser.add_argument("-n", "--no_attribution", help="Whether to include attribution",
-                        action='store_false')
+
     parser.add_argument("-i", "--input-file", required=True, help="Path to the Excel workbook containing mileage data.",
                         type=str)
     parser.add_argument("-s", "--skiprows", help="Number of header rows to skip before reading your table.",
@@ -75,7 +72,7 @@ def main(argv=None):
 
     # Load data
     # xlrd date conversion trick: https://stackoverflow.com/a/51708561
-    data = load_data.import_excel_data(
+    data, ret = load_data.import_excel_data(
         args.input_file,
         skiprows=args.skiprows,
         usecols=args.usecols,
@@ -83,8 +80,12 @@ def main(argv=None):
         converters={
             'Date': lambda x: xlrd.xldate.xldate_as_datetime(x, 0)
         })
+    print(data)
 
     # Perform calculations
+    data = load_data.establish_relevant_columns(data)
+    basic_stats = calculate_statistics.calculate_basic_stats(data)
+    calculate_statistics.print_basic_stats(basic_stats)
 
     # Make Plots
 
@@ -100,3 +101,5 @@ def main(argv=None):
 if __name__ == "__main__":
     status = main()
     sys.exit(status)
+
+# main(["-i",r"..\tests\test_data\test_data.xlsx"])

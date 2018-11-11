@@ -55,14 +55,17 @@ def establish_relevant_columns(df):
     """
     Creates a dataframe with columns that are useful for month/year pivoting.
 
+    :type df: pd.DataFrame
     :param
     df: A pd.DataFrame object that has exactly two columns: 'Date' containing DateTime values, and 'Miles' containing floats.
 
     :return
     A pd.DataFrame instance with 'Date', 'Year', 'Month', 'DayOfWeek', and 'Miles' columns
     """
+    # First, drop NA values from the Miles column
+    df.dropna(axis=0, how='any', subset=['Miles'], inplace=True)
 
-    # First, establish year, name-of-month, and name-of-day columns in the dataframe.
+    # Next, establish year, name-of-month, and name-of-day columns in the dataframe.
     df['DayOfWeek'] = df['Date'].dt.day_name()
     df['Month'] = df['Date'].dt.month_name()
     df['Year'] = df['Date'].dt.year
