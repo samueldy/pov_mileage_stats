@@ -11,7 +11,7 @@ import logging
 from contextlib import contextmanager
 from io import StringIO
 
-from pov_mileage_stats import main
+from gen_mileage_stats import main
 import load_data
 import calculate_statistics
 import make_plots

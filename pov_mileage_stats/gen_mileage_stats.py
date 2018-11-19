@@ -57,6 +57,12 @@ def parse_cmdline(argv):
                         help="Print pivot table reports of the mileage.")
 
     args = None
+
+    # If user doesn't specify any arguments, print the help.
+    if not len(sys.argv) > 1:
+        parser.print_help()
+        return args, RETVAL.SUCCESS
+
     try:
         args = parser.parse_args(argv)
     except IOError as e:
@@ -64,12 +70,12 @@ def parse_cmdline(argv):
         parser.print_help()
         return args, 2
 
-    return args, 0
+    return args, RETVAL.SUCCESS
 
 
 def main(argv=None):
     args, ret = parse_cmdline(argv)
-    if ret != 0:
+    if ret != RETVAL.SUCCESS:
         return ret
 
     # Load data
@@ -99,7 +105,7 @@ def main(argv=None):
 
     # Open results in browser
 
-    return 0  # success
+    return RETVAL.SUCCESS  # success
 
 
 if __name__ == "__main__":
