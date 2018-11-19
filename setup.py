@@ -31,7 +31,7 @@ setup(
                                       ],
                   },     package_dir={'pov_mileage_stats': 'pov_mileage_stats'},
 
-    test_suite='tests',
+    test_suite='tests', install_requires=['xlrd', 'pathlib2', 'pandas']
     # Additional entries you may want simply uncomment the lines you want and fill in the data
     # author_email='me@place.org',      # Author email
     # url='http://www.my_package.com',  # Website
