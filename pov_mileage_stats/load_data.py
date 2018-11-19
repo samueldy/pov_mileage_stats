@@ -9,7 +9,7 @@ Handles data conversion into a pandas DataFrame.
 import os
 import pathlib2 as pathlib
 import pandas as pd
-import main
+import gen_mileage_stats as main
 import urllib
 import zlib
 
@@ -43,7 +43,7 @@ def import_excel_data(path, **kwargs):
     except (FileNotFoundError, urllib.error.URLError) as e:
         main.warning("Cannot locate file. Please ensure that you have specified the correct path.", e)
         return main.RETVAL.FAILURE
-    except zlib.error as e:
+    except (TypeError, zlib.error) as e:
         main.warning("Excel file appears to be corrupt. Please try using a different file.", e)
         return main.RETVAL.FAILURE
 
