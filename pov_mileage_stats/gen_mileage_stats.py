@@ -8,18 +8,14 @@ A small command-line tool to calculate mileage statistics for a personally-owned
 Handles the primary functions
 """
 
-import os
-import sys
 import argparse
-import matplotlib.pyplot as plt
-import pandas as pd
+import sys
+
 import xlrd
 
-import load_data
 import calculate_statistics
+import load_data
 import make_plots
-import results_export
-import html_template_render
 
 
 # Global return statuses
@@ -29,7 +25,7 @@ class RETVAL():
 
 
 # Other global variables
-SAMPLE_DATA_PATH = "data/test_data.xlsx"
+SAMPLE_DATA_PATH = "data\\test_data.xlsx"
 
 
 def warning(*objs):
@@ -57,6 +53,9 @@ def parse_cmdline(argv):
     parser.add_argument("-b", "--basic-statistics", action="store_const", const=True, required=False,
                         help="Print some basic statistics about the mileage log.")
 
+    parser.add_argument("-p", "--pivot-tables", action="store_const", const=True, required=False,
+                        help="Print pivot table reports of the mileage.")
+
     args = None
     try:
         args = parser.parse_args(argv)
@@ -80,9 +79,7 @@ def main(argv=None):
         skiprows=args.skiprows,
         usecols=args.usecols,
         sheets=1,
-        converters={
-            'Date': lambda x: xlrd.xldate.xldate_as_datetime(x, 0)
-        })
+    )
 
     # Perform calculations
     data = load_data.establish_relevant_columns(data)
@@ -91,6 +88,8 @@ def main(argv=None):
     if args.basic_statistics:
         calculate_statistics.print_basic_stats(basic_stats)
 
+    if args.pivot_tables:
+        print(calculate_statistics.fetch_pvttable_reports(data))
 
     # Make Plots
 
@@ -106,5 +105,5 @@ def main(argv=None):
 if __name__ == "__main__":
     status = main()
     sys.exit(status)
-
-# main(["-i",r"..\tests\test_data\test_data.xlsx"])
+# else:
+#     main(["-i",r"..\tests\test_data\test_data.xlsx"])
