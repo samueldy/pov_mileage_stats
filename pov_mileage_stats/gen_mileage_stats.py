@@ -53,8 +53,12 @@ def parse_cmdline(argv):
     parser.add_argument("-b", "--basic-statistics", action="store_const", const=True, required=False,
                         help="Print some basic statistics about the mileage log.")
 
-    parser.add_argument("-p", "--pivot-tables", action="store_const", const=True, required=False,
+    parser.add_argument("-v", "--pivot-tables", action="store_const", const=True, required=False,
                         help="Print pivot table reports of the mileage.")
+
+    parser.add_argument("-P", "--no-plots", action="store_const", const=True, required=False, default=False,
+                        help="If this option is specified, no plots will be generated. Plots are placed into {}.".format(
+                            make_plots.IMG_DIR))
 
     args = None
 
@@ -98,6 +102,9 @@ def main(argv=None):
         print(calculate_statistics.fetch_pvttable_reports(data))
 
     # Make Plots
+    if not args.no_plots:
+        make_plots.write_all_plots(data, make_plots.plot_info)
+        print("Plots saved to {}".format(make_plots.IMG_DIR))
 
     # Export results to Python objects and SVG images
 
