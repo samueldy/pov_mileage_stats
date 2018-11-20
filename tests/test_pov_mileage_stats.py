@@ -27,7 +27,7 @@ DATA_DIR = os.path.join(PROJ_DIR, 'data')
 SAMPLE_DATA_FILE = os.path.join(TEST_DATA_DIR, "test_data.xlsx")
 
 # Debug switches
-logging.basicConfig(level=logging.NOTSET)
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 DISABLE_REMOVE = logger.isEnabledFor(logging.DEBUG)
 
@@ -37,6 +37,19 @@ class GeneralCommandLineUse(unittest.TestCase):
     """
     These tests test general command-line operation of the program.
     """
+
+    def test_normal_use_case(self):
+        """
+        Normal use case in which the user provides correct minimal input.
+        :return:
+        """
+
+        args = ['-i', SAMPLE_DATA_FILE, '-b']
+
+        if logger.isEnabledFor(logging.DEBUG):
+            main(args)
+        with capture_stdout(main, args) as output:
+            self.assertTrue("Mean Mileage" in output)
 
     def test_run_with_no_args(self):
         """
@@ -102,3 +115,8 @@ def capture_stderr(command, *args, **kwargs):
     sys.stderr.seek(0)
     yield sys.stderr.read()
     sys.stderr = err
+
+
+if __name__ == '__init__':
+    unittest.main()
+    sys.exit(0)

@@ -59,7 +59,7 @@ def parse_cmdline(argv):
     args = None
 
     # If user doesn't specify any arguments, print the help.
-    if not len(sys.argv) > 1:
+    if not len(argv) > 1:
         parser.print_help()
         return args, RETVAL.SUCCESS
 
