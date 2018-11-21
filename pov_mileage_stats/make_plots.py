@@ -9,6 +9,7 @@ Handles data plotting.
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+from pandas import DateOffset
 
 # Going to make relevant for the mileage charts:
 # (1) Daily mileage usage for the last 30 days.
@@ -31,7 +32,12 @@ def save_daily_usage_plot(df, outpath):
     :param outpath: path (including file extension) where plot should be saved
     :return:
     """
-    plot1 = df.plot(x="Date", y="Miles", title="Daily Mileage Totals", grid=True, xlim=("2018-10", "2018-12"),
+
+    # Grab the max date, and calculate proper time limits. We want the last 30 days.
+    latest_date = df['Date'].max()
+    x_limits = (latest_date + DateOffset(days=-30), latest_date + DateOffset(days=5))
+
+    plot1 = df.plot(x="Date", y="Miles", title="Daily Mileage Totals", grid=True, xlim=x_limits,
                     style="o-k")
     plot1.set(xlabel='Date', ylabel='Miles Driven')
     plt.savefig(outpath, dpi=OUTPUT_DPI, bbox_inches='tight')
