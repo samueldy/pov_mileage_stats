@@ -55,7 +55,7 @@ def parse_cmdline(argv):
                         help="Print some basic statistics about the mileage log.")
 
     parser.add_argument("-v", "--pivot-tables", action="store_const", const=True, required=False,
-                        help="Print pivot table reports of the mileage.")
+                        help="Print pivot table reports of the mileage to STDOUT.", default=False)
 
     parser.add_argument("-P", "--no-plots", action="store_const", const=True, required=False, default=False,
                         help="If this option is specified, no plots will be generated. Plots are placed into {}.".format(
@@ -117,7 +117,8 @@ def main(argv=None):
         calculate_statistics.print_basic_stats(basic_stats)
 
     if args.pivot_tables:
-        print(calculate_statistics.fetch_pvttable_reports(data))
+        # Print text representation of pivot tables to screen.
+        calculate_statistics.gen_pvt_table_stdout_reports(data, calculate_statistics.PVT_TABLES)
 
     # Make Plots
     if not args.no_plots:

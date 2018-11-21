@@ -62,6 +62,20 @@ class GeneralCommandLineUse(unittest.TestCase):
         with capture_stderr(main, args) as output:
             self.assertTrue("You did not specify an Excel input file." in output)
 
+    def test_run_with_pivot_tables(self):
+        """
+        See if the program correctly outputs pivot tables to STDOUT
+        :return:
+        """
+        args = ['-i', SAMPLE_DATA_FILE, '-v']
+        if logger.isEnabledFor(logging.DEBUG):
+            main(args)
+        with capture_stdout(main, args) as output:
+            self.assertTrue("50.970968" in output) # Specific value for this test file.
+            self.assertTrue("56.922581" in output)
+            self.assertTrue("Median Mileage" in output)
+            self.assertTrue("Min Mileage" in output)
+            self.assertTrue("==============" in output) # Correct formatting?
 
 # Tests for data loading
 class LoadDataTests(unittest.TestCase):
