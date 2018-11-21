@@ -10,8 +10,6 @@ import os
 import pathlib2 as pathlib
 import pandas as pd
 import gen_mileage_stats as main
-import urllib
-import zlib
 
 
 def import_excel_data(path, **kwargs):
@@ -56,6 +54,5 @@ def establish_relevant_columns(df):
     df['DayOfWeek'] = df['Date'].dt.strftime('(%w): %A')
     df['Month'] = df['Date'].dt.strftime('(%m): %B')
     df['Year'] = df['Date'].dt.year
-
 
     return df

@@ -12,7 +12,7 @@ import sys
 import argparse
 from datetime import datetime
 
-from xlrd import open_workbook, XLRDError
+from xlrd import open_workbook
 import zlib
 import webbrowser
 
@@ -23,7 +23,7 @@ import html_template_render
 
 
 # Global return statuses
-class RETVAL():
+class RETVAL:
     SUCCESS = 0
     FAILURE = 1
 
@@ -146,20 +146,21 @@ def main(argv=None):
 
     # Render HTML report:
     # First, compile all the data into a huge dictionary:
-    DATA = {
-        'time_stamp': datetime.now().strftime('%c'),
-        'basic_stats': basic_stats,
-        'pvt_tables': calculate_statistics.gen_pvt_table_html_reports(data, calculate_statistics.PVT_TABLES),
-        'plot_info': make_plots.plot_info,
-        'plot_ext': make_plots.OUTPUT_EXT,
-        'plot_dir': make_plots.IMG_DIR + os.sep,
-    }
+    if not args.no_plots and not args.no_html:
+        jinja_data = {
+            'time_stamp': datetime.now().strftime('%c'),
+            'basic_stats': basic_stats,
+            'pvt_tables': calculate_statistics.gen_pvt_table_html_reports(data, calculate_statistics.PVT_TABLES),
+            'plot_info': make_plots.plot_info,
+            'plot_ext': make_plots.OUTPUT_EXT,
+            'plot_dir': make_plots.IMG_DIR + os.sep,
+        }
 
-    # Then, render this template using Jinja
-    html_template_render.render_template(DATA, template_path=TEMPLATE_PATH, out_path=HTML_OUT_PATH)
+        # Then, render this template using Jinja
+        html_template_render.render_template(jinja_data, template_path=TEMPLATE_PATH, out_path=HTML_OUT_PATH)
 
-    # Open results in browser
-    webbrowser.open(HTML_OUT_PATH)
+        # Open results in browser
+        webbrowser.open(HTML_OUT_PATH)
 
     return RETVAL.SUCCESS  # success
 
