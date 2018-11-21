@@ -57,8 +57,8 @@ def establish_relevant_columns(df):
     df.dropna(axis=0, how='any', subset=['Miles'], inplace=True)
 
     # Next, establish year, name-of-month, and name-of-day columns in the dataframe.
-    df['DayOfWeek'] = df['Date'].dt.day_name()
-    df['Month'] = df['Date'].dt.month_name()
+    df['DayOfWeek'] = df['Date'].dt.strftime('(%w): %A')
+    df['Month'] = df['Date'].dt.strftime('(%m): %B')
     df['Year'] = df['Date'].dt.year
 
     return df
