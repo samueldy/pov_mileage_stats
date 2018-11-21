@@ -60,7 +60,7 @@ class GeneralCommandLineUse(unittest.TestCase):
         if logger.isEnabledFor(logging.DEBUG):
             main(args)
         with capture_stderr(main, args) as output:
-            self.assertTrue("the following arguments are required: -i/--input-file" in output)
+            self.assertTrue("You did not specify an Excel input file." in output)
 
 
 # Tests for data loading
@@ -78,7 +78,7 @@ class LoadDataTests(unittest.TestCase):
         if logger.isEnabledFor(logging.DEBUG):
             main(args)
         with capture_stderr(main, args) as output:
-            self.assertTrue("Cannot locate file." in output)
+            self.assertTrue("Cannot find the input file" in output)
 
     def test_pass_corrupt_file(self):
         """

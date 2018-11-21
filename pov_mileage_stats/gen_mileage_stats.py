@@ -7,11 +7,12 @@ A small command-line tool to calculate mileage statistics for a personally-owned
 
 Handles the primary functions
 """
-
-import argparse
+import os
 import sys
+import argparse
 
-import xlrd
+from xlrd import open_workbook, XLRDError
+import zlib
 
 import calculate_statistics
 import load_data
@@ -72,7 +73,7 @@ def parse_cmdline(argv):
     except IOError as e:
         warning("Problems reading file:", e)
         parser.print_help()
-        return args, 2
+        return args, RETVAL.FAILURE
 
     return args, RETVAL.SUCCESS
 
@@ -83,13 +84,30 @@ def main(argv=None):
         return ret
 
     # Load data
-    # xlrd date conversion trick: https://stackoverflow.com/a/51708561
-    data, ret = load_data.import_excel_data(
-        args.input_file,
-        skiprows=args.skiprows,
-        usecols=args.usecols,
-        sheets=1,
-    )
+    try:
+        # First try to locate the file. If this fails, quit the program.
+        if not os.path.isfile(args.input_file):
+            warning("Cannot find the input file. Please check the path you specified.")
+            return args, RETVAL.FAILURE
+
+        # Manually check for broken Excel file (because apparently pd.read_excel won't raise an Exception for it)
+        # Thanks to https://stackoverflow.com/a/28645601
+        workbook = open_workbook(args.input_file)
+        workbook.release_resources()
+
+        data, ret = load_data.import_excel_data(
+            args.input_file,
+            skiprows=args.skiprows,
+            usecols=args.usecols,
+            sheets=1,
+        )
+
+    except AttributeError as e:
+        warning("You did not specify an Excel input file. Please specify one.")
+        return args, RETVAL.FAILURE
+    except zlib.error as e:
+        warning("Excel file appears to be corrupt. Please try using a different file.", e)
+        return RETVAL.FAILURE
 
     # Perform calculations
     data = load_data.establish_relevant_columns(data)
