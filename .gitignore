@@ -103,3 +103,8 @@ ENV/
 
 # VS Code stuff
 .vscode
+.idea/
+
+tests/Mileage_Report\.htm
+
+tests/img/
