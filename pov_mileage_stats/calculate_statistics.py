@@ -50,8 +50,8 @@ def print_basic_stats(basic_stats):
     """
     print("""
     
-    Basic Statistics
-    ================
+Basic Statistics
+================
     """)
     for _, data in basic_stats.items():
         print("{0:s}: {1:s} {2:s}".format(data['Name'], str(data['data']), data['units']))
@@ -75,5 +75,13 @@ def pvt_table_to_html(df, aggfunc):
 
 
 # Produce dictionary of pivot table HTML code for template rendering:
-def gen_pvt_table_reports(df, aggfuncdict):
+def gen_pvt_table_html_reports(df, aggfuncdict):
     return {key: pvt_table_to_html(df, val) for key, val in aggfuncdict.items()}
+
+
+# Produce stdout representation of pivot tables
+def gen_pvt_table_stdout_reports(df, aggfuncdict):
+    for key, val in aggfuncdict.items():
+        print("==============\n{} Mileage\n==============\n".format(key))
+        print(print_pvt_table(df, val))
+        print("\n")
