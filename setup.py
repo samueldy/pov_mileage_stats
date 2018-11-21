@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-pov_mileage_stats
+gen_mileage_stats
 A small command-line tool to calculate mileage statistics for a personally-owned vehicle.
 """
 from setuptools import setup
@@ -27,7 +27,7 @@ setup(
     package_data={'pov_mileage_stats': ["data/*.dat"]
                   },
 
-    entry_points={'console_scripts': ['pov_mileage_stats = pov_mileage_stats.pov_mileage_stats:main',
+    entry_points={'console_scripts': ['pov_mileage_stats = pov_mileage_stats.gen_mileage_stats:main',
                                       ],
                   },     package_dir={'pov_mileage_stats': 'pov_mileage_stats'},
 

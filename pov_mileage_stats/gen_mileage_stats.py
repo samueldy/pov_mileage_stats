@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-pov_mileage_stats.py
+gen_mileage_stats.py
 A small command-line tool to calculate mileage statistics for a personally-owned vehicle.
 
 Handles the primary functions
