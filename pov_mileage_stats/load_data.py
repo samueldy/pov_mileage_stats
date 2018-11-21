@@ -40,12 +40,6 @@ def import_excel_data(path, **kwargs):
         main.warning(
             "Workbook contains invalid data. Please check your column formatting and data range and try again.", e)
         return main.RETVAL.FAILURE
-    except (FileNotFoundError, urllib.error.URLError) as e:
-        main.warning("Cannot locate file. Please ensure that you have specified the correct path.", e)
-        return main.RETVAL.FAILURE
-    except (TypeError, zlib.error) as e:
-        main.warning("Excel file appears to be corrupt. Please try using a different file.", e)
-        return main.RETVAL.FAILURE
 
     # If the above passes, then we have a valid DataFrame and can return it to the user.
     return df, main.RETVAL.SUCCESS

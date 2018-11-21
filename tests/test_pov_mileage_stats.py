@@ -27,7 +27,7 @@ DATA_DIR = os.path.join(PROJ_DIR, 'data')
 SAMPLE_DATA_FILE = os.path.join(TEST_DATA_DIR, "test_data.xlsx")
 
 # Debug switches
-logging.basicConfig(level=logging.NOTSET)
+logging.basicConfig(level=logging.WARNING)
 logger = logging.getLogger(__name__)
 DISABLE_REMOVE = logger.isEnabledFor(logging.DEBUG)
 
@@ -38,6 +38,19 @@ class GeneralCommandLineUse(unittest.TestCase):
     These tests test general command-line operation of the program.
     """
 
+    def test_normal_use_case(self):
+        """
+        Normal use case in which the user provides correct minimal input.
+        :return:
+        """
+
+        args = ['-i', SAMPLE_DATA_FILE, '-b']
+
+        if logger.isEnabledFor(logging.DEBUG):
+            main(args)
+        with capture_stdout(main, args) as output:
+            self.assertTrue("Mean Mileage" in output)
+
     def test_run_with_no_args(self):
         """
         Trigger an error by attempting to run the program with no arguments.
@@ -47,7 +60,7 @@ class GeneralCommandLineUse(unittest.TestCase):
         if logger.isEnabledFor(logging.DEBUG):
             main(args)
         with capture_stderr(main, args) as output:
-            self.assertTrue("the following arguments are required: -i/--input-file" in output)
+            self.assertTrue("You did not specify an Excel input file." in output)
 
 
 # Tests for data loading
@@ -65,7 +78,7 @@ class LoadDataTests(unittest.TestCase):
         if logger.isEnabledFor(logging.DEBUG):
             main(args)
         with capture_stderr(main, args) as output:
-            self.assertTrue("Cannot locate file." in output)
+            self.assertTrue("Cannot find the input file" in output)
 
     def test_pass_corrupt_file(self):
         """
@@ -78,6 +91,31 @@ class LoadDataTests(unittest.TestCase):
         with capture_stderr(main, args) as output:
             self.assertTrue("Excel file appears to be corrupt." in output)
 
+# Tests for plotting
+class PlottingTests(unittest.TestCase):
+    """
+    These tests ensure that the plotting module works correctly.
+    """
+
+    def test_normal_plotting_routines(self):
+        """Test that output images are correctly placed into the correct output file."""
+        args = ['-i', SAMPLE_DATA_FILE]
+        with capture_stdout(main, args) as output:
+            self.assertTrue("Plots saved to" in output)
+
+        # Load plot config from the make_plots module
+        plot_config = make_plots.plot_info
+
+        # Check that all output files were successfully generated.
+        for plotID, singleplot_info in plot_config.items():
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
+            self.assertTrue(os.path.isfile(out_path))
+
+        # Silently remove output files, if not debugging.
+        for plotID, singleplot_info in plot_config.items():
+            # Write out the plot to the correct location
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
+            silent_remove(out_path, DISABLE_REMOVE)
 
 # Utility functions
 
@@ -102,3 +140,25 @@ def capture_stderr(command, *args, **kwargs):
     sys.stderr.seek(0)
     yield sys.stderr.read()
     sys.stderr = err
+
+
+# Silent remove function taken from Lecture 10 notes.
+def silent_remove(filename, disable=False):
+    """
+    Removes the target file name, catching and ignoring errors that indicate that the
+    file does not exist.
+
+    @param filename: The file to remove.
+    @param disable: boolean to flag if want to disable removal
+    """
+    if not disable:
+        try:
+            os.remove(filename)
+        except OSError as e:
+            if e.errno != errno.ENOENT:
+                raise
+
+
+if __name__ == '__init__':
+    unittest.main()
+    sys.exit(0)
