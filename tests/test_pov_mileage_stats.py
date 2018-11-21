@@ -11,7 +11,7 @@ import logging
 from contextlib import contextmanager
 from io import StringIO
 
-from gen_mileage_stats import main
+import gen_mileage_stats
 import load_data
 import calculate_statistics
 import make_plots
@@ -47,8 +47,8 @@ class GeneralCommandLineUse(unittest.TestCase):
         args = ['-i', SAMPLE_DATA_FILE, '-b']
 
         if logger.isEnabledFor(logging.DEBUG):
-            main(args)
-        with capture_stdout(main, args) as output:
+            gen_mileage_stats.main(args)
+        with capture_stdout(gen_mileage_stats.main, args) as output:
             self.assertTrue("Mean Mileage" in output)
 
     def test_run_with_no_args(self):
@@ -58,8 +58,8 @@ class GeneralCommandLineUse(unittest.TestCase):
         """
         args = []
         if logger.isEnabledFor(logging.DEBUG):
-            main(args)
-        with capture_stderr(main, args) as output:
+            gen_mileage_stats.main(args)
+        with capture_stderr(gen_mileage_stats.main, args) as output:
             self.assertTrue("You did not specify an Excel input file." in output)
 
     def test_run_with_pivot_tables(self):
@@ -69,13 +69,14 @@ class GeneralCommandLineUse(unittest.TestCase):
         """
         args = ['-i', SAMPLE_DATA_FILE, '-v']
         if logger.isEnabledFor(logging.DEBUG):
-            main(args)
-        with capture_stdout(main, args) as output:
-            self.assertTrue("50.970968" in output) # Specific value for this test file.
+            gen_mileage_stats.main(args)
+        with capture_stdout(gen_mileage_stats.main, args) as output:
+            self.assertTrue("50.970968" in output)  # Specific value for this test file.
             self.assertTrue("56.922581" in output)
             self.assertTrue("Median Mileage" in output)
             self.assertTrue("Min Mileage" in output)
-            self.assertTrue("==============" in output) # Correct formatting?
+            self.assertTrue("==============" in output)  # Correct formatting?
+
 
 # Tests for data loading
 class LoadDataTests(unittest.TestCase):
@@ -90,8 +91,8 @@ class LoadDataTests(unittest.TestCase):
         """
         args = ["-i", os.path.join(TEST_DATA_DIR, 'non-existent-file.xlsx')]
         if logger.isEnabledFor(logging.DEBUG):
-            main(args)
-        with capture_stderr(main, args) as output:
+            gen_mileage_stats.main(args)
+        with capture_stderr(gen_mileage_stats.main, args) as output:
             self.assertTrue("Cannot find the input file" in output)
 
     def test_pass_corrupt_file(self):
@@ -101,9 +102,10 @@ class LoadDataTests(unittest.TestCase):
         """
         args = ["-i", os.path.join(TEST_DATA_DIR, 'test_data_corrupted.xlsx')]
         if logger.isEnabledFor(logging.DEBUG):
-            main(args)
-        with capture_stderr(main, args) as output:
+            gen_mileage_stats.main(args)
+        with capture_stderr(gen_mileage_stats.main, args) as output:
             self.assertTrue("Excel file appears to be corrupt." in output)
+
 
 # Tests for plotting
 class PlottingTests(unittest.TestCase):
@@ -114,7 +116,7 @@ class PlottingTests(unittest.TestCase):
     def test_normal_plotting_routines(self):
         """Test that output images are correctly placed into the correct output file."""
         args = ['-i', SAMPLE_DATA_FILE]
-        with capture_stdout(main, args) as output:
+        with capture_stdout(gen_mileage_stats.main, args) as output:
             self.assertTrue("Plots saved to" in output)
 
         # Load plot config from the make_plots module
@@ -130,6 +132,23 @@ class PlottingTests(unittest.TestCase):
             # Write out the plot to the correct location
             out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
             silent_remove(out_path, DISABLE_REMOVE)
+
+
+class HTMLRenderTests(unittest.TestCase):
+    """
+    Ensure that the HTML renderer works properly
+    """
+
+    def test_jinja_render(self):
+        """
+        Test the Jinja2 wrapper function
+        :return:
+        """
+        args = ['-i', SAMPLE_DATA_FILE]
+        with capture_stdout(gen_mileage_stats.main, args) as output:
+            self.assertTrue("HTML report rendered to" in output)
+            self.assertTrue(os.path.isfile())
+
 
 # Utility functions
 

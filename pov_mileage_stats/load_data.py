@@ -26,12 +26,9 @@ def import_excel_data(path, **kwargs):
     """
 
     # First, form the file's URI, which pandas needs in order to read the file.
-    try:
-        path = os.path.abspath(path)
-        fname = pathlib.Path(path).as_uri()
-    except IOError as e:
-        main.warning("Cannot locate file. Please ensure you have specified the correct path.", e)
-        return main.RETVAL.FAILURE
+
+    path = os.path.abspath(path)
+    fname = pathlib.Path(path).as_uri()
 
     # Now, pass along the file name to pandas, along with any options the user specified:
     try:
