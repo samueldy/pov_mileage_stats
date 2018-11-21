@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>POV Mileage Statistics</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="jumbotron">
+      <div class="text-center">
+        <h1>Personally Owned Vehicle (POV) Mileage Statistics</h1>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="lead">Statistics current as of {{ timestamp }}</p>
+
+      <p class="h3 mt-2">Basic Statistics</p>
+      {% block basic_stats %} {% endblock %}
+
+      <p class="h3 mt-2">Plots</p>
+      {% block plots %} {{ testTable | safe }} {% endblock %}
+      
+      <p class="h3 mt-2">Pivot Table Reports</p>
+      {% block pivot_tables %} {% endblock %}
+    </div>
+  </body>
+</html>
