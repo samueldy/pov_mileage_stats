@@ -31,12 +31,7 @@ def import_excel_data(path, **kwargs):
     fname = pathlib.Path(path).as_uri()
 
     # Now, pass along the file name to pandas, along with any options the user specified:
-    try:
-        df = pd.read_excel(fname, **kwargs)
-    except ValueError as e:
-        main.warning(
-            "Workbook contains invalid data. Please check your column formatting and data range and try again.", e)
-        return main.RETVAL.FAILURE
+    df = pd.read_excel(fname, **kwargs)
 
     # If the above passes, then we have a valid DataFrame and can return it to the user.
     return df, main.RETVAL.SUCCESS
@@ -53,12 +48,14 @@ def establish_relevant_columns(df):
     :return
     A pd.DataFrame instance with 'Date', 'Year', 'Month', 'DayOfWeek', and 'Miles' columns
     """
+
     # First, drop NA values from the Miles column
     df.dropna(axis=0, how='any', subset=['Miles'], inplace=True)
 
-    # Next, establish year, name-of-month, and name-of-day columns in the dataframe.
+    # Next, establish year, name-of-month, an name-of-day columns in the dataframe.
     df['DayOfWeek'] = df['Date'].dt.strftime('(%w): %A')
     df['Month'] = df['Date'].dt.strftime('(%m): %B')
     df['Year'] = df['Date'].dt.year
+
 
     return df

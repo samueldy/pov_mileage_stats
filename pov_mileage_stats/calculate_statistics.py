@@ -6,6 +6,7 @@ A small command-line tool to calculate mileage statistics for a personally-owned
 Handles statistics calculation.
 """
 import numpy as np
+import gen_mileage_stats
 
 
 def calculate_basic_stats(df):

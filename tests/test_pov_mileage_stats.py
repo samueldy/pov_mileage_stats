@@ -115,11 +115,22 @@ class LoadDataTests(unittest.TestCase):
         Trigger a zlib.error by passing a file that is corrupt (eg., that can't be unzipped).
         :return:
         """
-        args = ["-i", os.path.join(TEST_DATA_DIR, 'test_data_corrupted.xlsx')]
+        args = ["-i", os.path.join(TEST_DATA_DIR, 'test_data_corrupted.xlsx'), '-H']
         if logger.isEnabledFor(logging.DEBUG):
             gen_mileage_stats.main(args)
         with capture_stderr(gen_mileage_stats.main, args) as output:
             self.assertTrue("Excel file appears to be corrupt." in output)
+
+    def test_pass_invalid_data_file(self):
+        """
+        Trigger a AttributeError by passing a datafile that has text in one of the date cells.
+        :return:
+        """
+        args = ["-i", os.path.join(TEST_DATA_DIR, 'test_data_invaliddata.xlsx'), '-H']
+        if logger.isEnabledFor(logging.DEBUG):
+            gen_mileage_stats.main(args)
+        with capture_stderr(gen_mileage_stats.main, args) as output:
+            self.assertTrue("Workbook contains invalid data" in output)
 
 
 # Tests for plotting

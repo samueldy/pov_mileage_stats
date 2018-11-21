@@ -124,8 +124,13 @@ def main(argv=None):
         return RETVAL.FAILURE
 
     # Perform calculations
-    data = load_data.establish_relevant_columns(data)
-    basic_stats = calculate_statistics.calculate_basic_stats(data)
+    try:
+        data = load_data.establish_relevant_columns(data)
+        basic_stats = calculate_statistics.calculate_basic_stats(data)
+    except AttributeError as e:
+        warning(
+            "Workbook contains invalid data. Please check your column formatting and data range and try again.", e)
+        return RETVAL.FAILURE
 
     if args.basic_statistics:
         calculate_statistics.print_basic_stats(basic_stats)
