@@ -10,13 +10,16 @@ Handles the primary functions
 import os
 import sys
 import argparse
+from datetime import datetime
 
 from xlrd import open_workbook, XLRDError
 import zlib
+import webbrowser
 
 import calculate_statistics
 import load_data
 import make_plots
+import html_template_render
 
 
 # Global return statuses
@@ -25,8 +28,14 @@ class RETVAL():
     FAILURE = 1
 
 
-# Other global variables
-SAMPLE_DATA_PATH = "data\\test_data.xlsx"
+# Global Variables
+CURRENT_DIR = os.path.dirname(__file__)
+TEMPLATE_PATH = os.path.join(os.path.join(CURRENT_DIR, 'html_templates'), 'base.htm')
+HTML_OUTFILE_NAME = 'Mileage_Report.htm'
+HTML_OUT_PATH = os.path.join(os.getcwd(), HTML_OUTFILE_NAME)
+PROJ_DIR = os.path.join(CURRENT_DIR, '..')
+TEST_DIR = os.path.join(PROJ_DIR, 'tests')
+SAMPLE_DATA_PATH = os.path.join(TEST_DIR, 'test_data.xlsx')
 
 
 def warning(*objs):
@@ -125,11 +134,22 @@ def main(argv=None):
         make_plots.write_all_plots(data, make_plots.plot_info)
         print("Plots saved to {}".format(make_plots.IMG_DIR))
 
-    # Export results to Python objects and SVG images
+    # Render HTML report:
+    # First, compile all the data into a huge dictionary:
+    DATA = {
+        'time_stamp': datetime.now().strftime('%c'),
+        'basic_stats': basic_stats,
+        'pvt_tables': calculate_statistics.gen_pvt_table_html_reports(data, calculate_statistics.PVT_TABLES),
+        'plot_info': make_plots.plot_info,
+        'plot_ext': make_plots.OUTPUT_EXT,
+        'plot_dir': make_plots.IMG_DIR + os.sep,
+    }
 
-    # Render Jinja templates
+    # Then, render this template using Jinja
+    html_template_render.render_template(DATA, template_path=TEMPLATE_PATH, out_path=HTML_OUT_PATH)
 
     # Open results in browser
+    webbrowser.open(HTML_OUT_PATH)
 
     return RETVAL.SUCCESS  # success
 
