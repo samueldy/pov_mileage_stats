@@ -95,7 +95,6 @@ def write_all_plots(df, plot_config):
     :param df: the mileage dataframe containing at least Miles, Month, and Day columns (with each Month and Day value prepended with the appropriate month or day number).
     :return:
     """
-    results = dict()
 
     # Make output directory if it doesn't already exist
     if not os.path.isdir(IMG_DIR):
