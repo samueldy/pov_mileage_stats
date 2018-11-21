@@ -6,10 +6,13 @@ Unit and regression test for the pov_mileage_stats package.
 # Import package, test suite, and other packages as needed
 import os
 import sys
+import errno
 import unittest
 import logging
 from contextlib import contextmanager
 from io import StringIO
+import shutil
+import time
 
 import gen_mileage_stats
 import load_data
@@ -44,7 +47,7 @@ class GeneralCommandLineUse(unittest.TestCase):
         :return:
         """
 
-        args = ['-i', SAMPLE_DATA_FILE, '-b']
+        args = ['-i', SAMPLE_DATA_FILE, '-b', '-H']
 
         if logger.isEnabledFor(logging.DEBUG):
             gen_mileage_stats.main(args)
@@ -67,7 +70,7 @@ class GeneralCommandLineUse(unittest.TestCase):
         See if the program correctly outputs pivot tables to STDOUT
         :return:
         """
-        args = ['-i', SAMPLE_DATA_FILE, '-v']
+        args = ['-i', SAMPLE_DATA_FILE, '-v', '-H']
         if logger.isEnabledFor(logging.DEBUG):
             gen_mileage_stats.main(args)
         with capture_stdout(gen_mileage_stats.main, args) as output:
@@ -76,6 +79,18 @@ class GeneralCommandLineUse(unittest.TestCase):
             self.assertTrue("Median Mileage" in output)
             self.assertTrue("Min Mileage" in output)
             self.assertTrue("==============" in output)  # Correct formatting?
+
+    def test_run_html_but_no_plots(self):
+        """
+        Test by running the -P option only to see if the program warns the user to unsuppress plot generation.
+        :return:
+        """
+        args = ['-i', SAMPLE_DATA_FILE, '-P']
+        if logger.isEnabledFor(logging.DEBUG):
+            gen_mileage_stats.main(args)
+
+        with capture_stderr(gen_mileage_stats.main, args) as output:
+            self.assertTrue("You must allow plots in order to generate HTML content" in output)
 
 
 # Tests for data loading
@@ -89,7 +104,7 @@ class LoadDataTests(unittest.TestCase):
         Trigger an FileNotFountError by passing an invalid path to the function
         :return:
         """
-        args = ["-i", os.path.join(TEST_DATA_DIR, 'non-existent-file.xlsx')]
+        args = ["-i", os.path.join(TEST_DATA_DIR, 'non-existent-file.xlsx'), '-H']
         if logger.isEnabledFor(logging.DEBUG):
             gen_mileage_stats.main(args)
         with capture_stderr(gen_mileage_stats.main, args) as output:
@@ -115,7 +130,11 @@ class PlottingTests(unittest.TestCase):
 
     def test_normal_plotting_routines(self):
         """Test that output images are correctly placed into the correct output file."""
-        args = ['-i', SAMPLE_DATA_FILE]
+
+        # First, silently remove the image output directory to see if the program can produce it.
+        silent_remove(make_plots.IMG_DIR, DISABLE_REMOVE)
+
+        args = ['-i', SAMPLE_DATA_FILE, '-H']
         with capture_stdout(gen_mileage_stats.main, args) as output:
             self.assertTrue("Plots saved to" in output)
 
@@ -123,16 +142,35 @@ class PlottingTests(unittest.TestCase):
         plot_config = make_plots.plot_info
 
         # Check that all output files were successfully generated.
-        for plotID, singleplot_info in plot_config.items():
-            out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
+        for plotID, single_plot_info in plot_config.items():
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, single_plot_info['filename']), make_plots.OUTPUT_EXT])
             self.assertTrue(os.path.isfile(out_path))
 
-        # Silently remove output files, if not debugging.
-        for plotID, singleplot_info in plot_config.items():
-            # Write out the plot to the correct location
-            out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
-            silent_remove(out_path, DISABLE_REMOVE)
+        # Finally, silently remove the image output directory to see if the program can produce it.
+        silent_remove(make_plots.IMG_DIR, DISABLE_REMOVE)
 
+    def test_no_plot_option(self):
+        """
+        Test that specifying the -P option does not produce any plots
+        :return:
+        """
+        # First, silently remove the image output directory to ensure we're not polluting our test.
+        silent_remove(make_plots.IMG_DIR, DISABLE_REMOVE)
+
+        args = ['-i', SAMPLE_DATA_FILE, '-P', '-H']
+        with capture_stdout(gen_mileage_stats.main, args) as output:
+            self.assertFalse("Plots saved to" in output)
+
+        # Load plot config from the make_plots module
+        plot_config = make_plots.plot_info
+
+        # Check that all output files were successfully generated.
+        for plotID, single_plot_info in plot_config.items():
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, single_plot_info['filename']), make_plots.OUTPUT_EXT])
+            self.assertFalse(os.path.isfile(out_path))
+
+        # Finally, silently remove the image output directory to see if the program can produce it.
+        silent_remove(make_plots.IMG_DIR, DISABLE_REMOVE)
 
 class HTMLRenderTests(unittest.TestCase):
     """
@@ -145,9 +183,39 @@ class HTMLRenderTests(unittest.TestCase):
         :return:
         """
         args = ['-i', SAMPLE_DATA_FILE]
+        try:
+            with capture_stdout(gen_mileage_stats.main, args) as output:
+                self.assertTrue("HTML report rendered to" in output)
+                self.assertTrue(os.path.isfile(gen_mileage_stats.HTML_OUT_PATH))
+                self.assertTrue(os.path.isdir(make_plots.IMG_DIR))
+        finally:
+            time.sleep(1)  # So that we have time to see the report show up in our browser
+            silent_remove(gen_mileage_stats.HTML_OUT_PATH)
+
+    def test_no_html_option(self):
+        """
+        Test the -H option to ensure that HTML is not rendered, but plots are
+        :return:
+        """
+        # First, silently remove the image output directory and HTML output to ensure we're not polluting our test.
+        silent_remove(make_plots.IMG_DIR, DISABLE_REMOVE)
+        silent_remove(gen_mileage_stats.HTML_OUT_PATH)
+
+        args = ['-i', SAMPLE_DATA_FILE, '-H']
         with capture_stdout(gen_mileage_stats.main, args) as output:
-            self.assertTrue("HTML report rendered to" in output)
-            self.assertTrue(os.path.isfile())
+            self.assertFalse(os.path.isfile(gen_mileage_stats.HTML_OUT_PATH))
+
+        # Load plot config from the make_plots module
+        plot_config = make_plots.plot_info
+
+        # Check that all output files were successfully generated.
+        for plotID, single_plot_info in plot_config.items():
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, single_plot_info['filename']), make_plots.OUTPUT_EXT])
+            self.assertTrue(os.path.isfile(out_path))
+
+        # Finally, silently remove the image output directory and HTML output to clean up.
+        silent_remove(gen_mileage_stats.HTML_OUT_PATH)
+        silent_remove(make_plots.IMG_DIR, DISABLE_REMOVE)
 
 
 # Utility functions
@@ -186,7 +254,11 @@ def silent_remove(filename, disable=False):
     """
     if not disable:
         try:
-            os.remove(filename)
+            if os.path.isfile(filename):
+                os.remove(filename)
+            elif os.path.isdir(filename):
+                # Careful!
+                shutil.rmtree(filename)
         except OSError as e:
             if e.errno != errno.ENOENT:
                 raise

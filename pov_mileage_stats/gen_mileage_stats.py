@@ -67,22 +67,22 @@ def parse_cmdline(argv):
                         help="Print pivot table reports of the mileage to STDOUT.", default=False)
 
     parser.add_argument("-P", "--no-plots", action="store_const", const=True, required=False, default=False,
-                        help="If this option is specified, no plots will be generated. Plots are placed into {}.".format(
+                        help="Do not generate any plots. Plots are placed into {}. Because plot images are required "
+                             "for HTML output, this option implies -H".format(
                             make_plots.IMG_DIR))
+
+    parser.add_argument("-H", "--no-html", action="store_const", const=True, required=False, default=False,
+                        help="Do not generate any HTML output file.")
 
     args = None
 
     # If user doesn't specify any arguments, print the help.
     if not len(argv) > 1:
         parser.print_help()
-        return args, RETVAL.SUCCESS
-
-    try:
-        args = parser.parse_args(argv)
-    except IOError as e:
-        warning("Problems reading file:", e)
-        parser.print_help()
+        warning("You did not specify an Excel input file. Please specify one using the -i option.")
         return args, RETVAL.FAILURE
+
+    args = parser.parse_args(argv)
 
     return args, RETVAL.SUCCESS
 
@@ -91,6 +91,11 @@ def main(argv=None):
     args, ret = parse_cmdline(argv)
     if ret != RETVAL.SUCCESS:
         return ret
+
+    # If the user specified -P, but not -H, fail and warn that they must allow plots to get HTML
+    if args.no_plots and not args.no_html:
+        warning("You must allow plots in order to generate HTML content. Please run the program without the -P switch.")
+        return args, RETVAL.FAILURE
 
     # Load data
     try:
