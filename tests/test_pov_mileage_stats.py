@@ -91,6 +91,31 @@ class LoadDataTests(unittest.TestCase):
         with capture_stderr(main, args) as output:
             self.assertTrue("Excel file appears to be corrupt." in output)
 
+# Tests for plotting
+class PlottingTests(unittest.TestCase):
+    """
+    These tests ensure that the plotting module works correctly.
+    """
+
+    def test_normal_plotting_routines(self):
+        """Test that output images are correctly placed into the correct output file."""
+        args = ['-i', SAMPLE_DATA_FILE]
+        with capture_stdout(main, args) as output:
+            self.assertTrue("Plots saved to" in output)
+
+        # Load plot config from the make_plots module
+        plot_config = make_plots.plot_info
+
+        # Check that all output files were successfully generated.
+        for plotID, singleplot_info in plot_config.items():
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
+            self.assertTrue(os.path.isfile(out_path))
+
+        # Silently remove output files, if not debugging.
+        for plotID, singleplot_info in plot_config.items():
+            # Write out the plot to the correct location
+            out_path = r"".join([os.path.join(make_plots.IMG_DIR, singleplot_info['filename']), make_plots.OUTPUT_EXT])
+            silent_remove(out_path, DISABLE_REMOVE)
 
 # Utility functions
 
@@ -115,6 +140,23 @@ def capture_stderr(command, *args, **kwargs):
     sys.stderr.seek(0)
     yield sys.stderr.read()
     sys.stderr = err
+
+
+# Silent remove function taken from Lecture 10 notes.
+def silent_remove(filename, disable=False):
+    """
+    Removes the target file name, catching and ignoring errors that indicate that the
+    file does not exist.
+
+    @param filename: The file to remove.
+    @param disable: boolean to flag if want to disable removal
+    """
+    if not disable:
+        try:
+            os.remove(filename)
+        except OSError as e:
+            if e.errno != errno.ENOENT:
+                raise
 
 
 if __name__ == '__init__':
